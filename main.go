@@ -1,22 +1,22 @@
 package main
 
 import (
-	"errors"
+	"context"
 
-	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
 
 func main() {
-	zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	log.Info().Msg("hello world")
+	log := log.With().Str("booking_id", "1234").Logger()
 
-	err := errors.New("payment is already expired")
-	log.Fatal().
-		Err(err).
-		Str("payment_id", "123456").
-		Str("payment_status", "failed").
-		Str("booking_id", "98765").
-		Float64("amount", 100.0).
-		Msgf("payment failed for booking %s", "234")
+	ctx := log.WithContext(context.Background())
+	makeBooking(ctx)
+
+	log.Debug().
+		Int("num_ticket", 2).
+		Msg("booking is created")
+}
+
+func makeBooking(ctx context.Context) {
+	log.Ctx(ctx).Info().Msg("creating a booking")
 }
