@@ -9,5 +9,18 @@ services:
       - ./scripts/grafana/dashboards:/etc/grafana/demo-dashboards
       - grafana_data:/var/lib/grafana
 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./scripts/prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=5m'
+      - '--storage.tsdb.retention.size=10GB'
+
 volumes:
   grafana_data:
+  prometheus_data:
