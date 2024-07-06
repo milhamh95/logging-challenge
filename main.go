@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -8,8 +10,13 @@ import (
 func main() {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	log.Info().Msg("hello world")
-	log.Debug().Msg("asdf")
-	log.Warn().Msg("asdf")
-	log.Error().Msg("asdf")
-	log.Fatal().Msg("asdf")
+
+	err := errors.New("payment is already expired")
+	log.Fatal().
+		Err(err).
+		Str("payment_id", "123456").
+		Str("payment_status", "failed").
+		Str("booking_id", "98765").
+		Float64("amount", 100.0).
+		Msgf("payment failed for booking %s", "234")
 }
