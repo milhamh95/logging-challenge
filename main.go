@@ -17,6 +17,7 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("unable to open log file")
 	}
+	defer lf.Close()
 
 	multiwriters := zerolog.MultiLevelWriter(os.Stdout, lf)
 	log.Logger = zerolog.New(multiwriters).With().Timestamp().Logger()
