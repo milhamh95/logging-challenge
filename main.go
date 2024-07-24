@@ -54,6 +54,7 @@ func main() {
 	}
 
 	go func() {
+		log.Info().Msg("starting the server")
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal().Err(err).Msg("failed to listen and serve http server")
 		}
