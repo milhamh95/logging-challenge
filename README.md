@@ -49,3 +49,16 @@ Follow tutorial from -> [link](https://www.cherryservers.com/blog/install-docker
 ### Docker Compose
 
 Follow tutorial from -> [link](https://medium.com/@piyushkashyap045/comprehensive-guide-installing-docker-and-docker-compose-on-windows-linux-and-macos-a022cf82ac0b)
+
+## Module 1 - Grafana
+
+- Make sure to properly create the grafana yml configuration file
+- Run it with `docker compose up -d`
+
+## Module 2 - Logging
+
+- Storing logs is not `FREE`
+- Example a log size: `100 bytes`.
+- 1 request = 20 logs.
+- 1000 requests per second = 20000 logs per second -> 2000KB = 2MB
+- In 1 month -> 2 MB x 60 seconds x 60 minutes x 24 hour x 30 days = 5.184 TB
