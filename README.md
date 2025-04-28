@@ -62,3 +62,11 @@ Follow tutorial from -> [link](https://medium.com/@piyushkashyap045/comprehensiv
 - 1 request = 20 logs.
 - 1000 requests per second = 20000 logs per second -> 2000KB = 2MB
 - In 1 month -> 2 MB x 60 seconds x 60 minutes x 24 hour x 30 days = 5.184 TB
+
+## Module 3 - Centralized Logging
+
+- log query summarized nginx
+
+```
+sum by (user_agent) (rate({app="nginx"} | logfmt | pattern `<_> - - <_> "<method> <url> <_>" <status> <_> <_> "<user_agent>" <_>` [1m]))
+```
